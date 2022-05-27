@@ -4,17 +4,17 @@ interface SwitchBtnProps {
   rate: number | undefined;
   currencyFrom: string;
   currencyTo: string;
+  switchCurrency: (currencyFrom: string, currencyTo: string) => void;
 }
 
 const SwitchButton: React.FC<SwitchBtnProps> = ({
   rate,
   currencyFrom,
   currencyTo,
+  switchCurrency,
 }) => {
   const switchHandler = () => {
-    [currencyFrom, currencyTo] = [currencyTo, currencyFrom];
-    console.log(currencyFrom);
-    console.log(currencyTo);
+    switchCurrency(currencyFrom, currencyTo);
   };
 
   return (

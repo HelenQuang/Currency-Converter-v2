@@ -27,6 +27,11 @@ const App: React.FC = () => {
     setCurrencyTo(currencyTo);
   };
 
+  const switchCurrency = (currencyFrom: string, currencyTo: string) => {
+    setCurrencyFrom(currencyTo);
+    setCurrencyTo(currencyFrom);
+  };
+
   useEffect(() => {
     const conversionFn = async () => {
       try {
@@ -41,10 +46,10 @@ const App: React.FC = () => {
 
         setRate(conversionData.conversion_rate);
         setResult(conversionData.conversion_result);
-        console.log(rate, result);
+
         setError(null);
-      } catch (err) {
-        // setError(err.message);
+      } catch (err: any) {
+        setError(err.message);
       }
     };
 
@@ -65,12 +70,15 @@ const App: React.FC = () => {
         setCurrencyFromFn={setCurrencyFromFn}
         currencyFrom={currencyFrom}
       />
+
       <SwitchButton
         rate={rate}
         currencyFrom={currencyFrom}
         currencyTo={currencyTo}
+        switchCurrency={switchCurrency}
       />
       <ToCurrency setCurrencyToFn={setCurrencyToFn} currencyTo={currencyTo} />
+
       <ResultBox result={result} />
     </div>
   );
