@@ -10,6 +10,7 @@ import AmountBox from "./components/AmountBox";
 const App: React.FC = () => {
   const [rate, setRate] = useState<number>();
   const [result, setResult] = useState<number>();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [error, setError] = useState<string | null>(null);
   const [amount, setAmount] = useState<string>("1");
   const [currencyFrom, setCurrencyFrom] = useState<string>("EUR");
@@ -48,8 +49,8 @@ const App: React.FC = () => {
         setResult(conversionData.conversion_result);
 
         setError(null);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (error: any) {
+        setError(error.message);
       }
     };
 
